@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('title');
+            $table->string('description');
+            $table->integer('gamedev_studio_id')->nullable();
+            $table->foreign('gamedev_studio_id')->references('id')->on('gamedev_studios');
         });
     }
 
@@ -29,3 +32,4 @@ return new class extends Migration
         Schema::dropIfExists('games');
     }
 };
+

@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('gamedev_studios', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('address');
+            $table->string('website');
+            $table->integer('number_employees');
             $table->timestamps();
         });
     }
