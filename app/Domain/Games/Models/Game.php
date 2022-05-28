@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Games\Models;
 
 use App\Domain\Games\Models\Factories\GameFactory;
-use Database\Factories\GameFactory as FactoriesGameFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Domain\GamedevStudios\Models\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Domain\GamedevStudios\Models\GamedevStudio;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GamedevStudio>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Domain\GamedevStudios\Models\Model>
  */
 class GamedevStudioFactory extends Factory
 {
-    protected $model = GameFactory::class;
+    protected $model = GamedevStudio::class;
     /**
      * Define the model's default state.
      *

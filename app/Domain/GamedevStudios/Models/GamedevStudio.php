@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\GamedevStudios\Models;
 
 use App\Domain\Games\Models\Game;
 use App\Domain\GamedevStudios\Models\Factories\GamedevStudioFactory;
