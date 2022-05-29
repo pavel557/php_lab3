@@ -1,0 +1,350 @@
+openapi: 3.0.0
+info:
+  title: Swagger Gamedev Studios
+  description: Gamedev API
+  version: 1.0.0
+servers:
+  - url: http://u8191038-lab2.local/api/v1
+paths:
+  /gamedev-studios:
+    post:
+      tags:
+        - gamedev studios
+      summary: Create a new gamedev studio
+      operationId: create_gamedev_studios
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: gameMasters
+                address:
+                  type: string
+                  example: Zelenograd
+                website:
+                  type: string
+                  example: www.gameMasters.com
+                number_employees:
+                  type: integer
+                  example: 20
+      responses:
+        "201":
+          description: Successfull creation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GamedevStudio"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /gamedev-studios/{gamedev_studio_id}:
+    get:
+      tags:
+        - gamedev studios
+      summary: Get info about gamedev studio
+      operationId: get_gamedev_studio_by_id
+      parameters:
+        - name: gamedev_studio_id
+          in: path
+          required: true
+          description: The id of the gamedev studio
+          schema:
+            type: integer
+            example: 1
+        - name: include
+          in: query
+          required: false
+          description: Add related values from the table
+          schema:
+            type: string
+            example: games
+      responses:
+        "200":
+          description: Successfull operation
+          content:
+            application/json:
+              schema:
+                type: object
+                required: true
+                properties:
+                  data:
+                    type: object
+                    required: true
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      title:
+                        type: string
+                      address:
+                        type: string
+                      website:
+                        type: string
+                      number_employees:
+                        type: integer
+                      games:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Game"
+                  meta:
+                    type: object
+                    required: false
+                    properties:
+                      info:
+                        type: string
+                        example:
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - gamedev studios
+      summary: Update all fields for a specific gamedev studio
+      operationId: update_gamedev_studio_by_id
+      parameters:
+        - name: gamedev_studio_id
+          in: path
+          required: true
+          description: The id of the gamedev_studio
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        description: Fields to update
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - title
+                - address
+                - website
+              properties:
+                title:
+                  type: string
+                address:
+                  type: string
+                website:
+                  type: string
+                number_employees:
+                  type: integer
+                  example: 20
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GamedevStudio"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      tags:
+        - gamedev studios
+      summary: Update selected fields for a specific gamedev studio
+      operationId: update_gamedev_studio_fields_by_id
+      parameters:
+        - name: gamedev_studio_id
+          in: path
+          required: true
+          description: The id of the gamedev_studio
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        description: Fields to update
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - title
+                - address
+                - website
+              properties:
+                title:
+                  type: string
+                address:
+                  type: string
+                website:
+                  type: string
+                number_employees:
+                  type: integer
+                  example: 20
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GamedevStudio"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - gamedev studios
+      summary: Delete a specific gamedev studio
+      operationId: delete_gamedev_studio_by_id
+      parameters:
+        - name: gamedev_studio_id
+          in: path
+          required: true
+          description: The id of the gamedev_studio
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    nullable: true
+                    example:
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Game:
+      type: object
+      required:
+        - id
+        - title
+        - description
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        gamedev_studio_id:
+          type: integer
+
+    GamedevStudio:
+      type: object
+      required:
+        - id
+        - title
+        - address
+        - website
+        - number_employees
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        address:
+          type: string
+        website:
+          type: string
+        number_employees:
+          type: integer
+          example: 20
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          example: NotFoundHttpException
+        message:
+          type: string
+          example: Requested resourse was not found
+        meta:
+          type: object
+          properties:
+            info:
+              type: string
+              example:
